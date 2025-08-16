@@ -6,7 +6,7 @@
 
 ## 项目简介
 
-PicMyWeb 是一个简单易用的网站批量截图工具，采用Rust编写，具有现代化图形界面。
+PicMyWeb 是在 VsCode 编辑器中使用 TRAE AI 插件，在 Doubao-Seed-1.6、Kimi-K2、Qwen-3Coder、DeepSeek-V3-0324等“老师傅”的帮助下，采用 Rust 编程语言编写的一个网站批量截图工具。
 
 ## 主要功能
 
@@ -16,12 +16,13 @@ PicMyWeb 是一个简单易用的网站批量截图工具，采用Rust编写，�
 - 📸 使用无头Chrome浏览器截图
 - ⏱️ 基于时间戳的自动命名
 - ⚡ 异步处理提高效率
+- 📲 模拟手机访问网页
 
 ## ⚡快速开始
 
 ### 系统要求
 - Windows 10/11
-- Chrome浏览器
+- Chrome 浏览器
 
 ### 使用方法
 
@@ -29,7 +30,7 @@ PicMyWeb 是一个简单易用的网站批量截图工具，采用Rust编写，�
 2. 运行程序并选择网址文件
 3. 点击"开始截图"按钮
 4. 截图将保存在`screenshots`文件夹
-5. 文件名格式: `域名_YYYY-MM-DD_HH-MM-SS.png`
+5. 截图文件名格式: `域名_YYYY-MM-DD_HH-MM-SS.png`
 
 ## 🐛 故障排除
 
