@@ -1,6 +1,6 @@
 # PicMyWeb - 网站批量截图工具
 
-![版本](https://img.shields.io/badge/版本-0.2.0-blue.svg)
+![版本](https://img.shields.io/badge/版本-0.2.1-blue.svg)
 ![许可证](https://img.shields.io/badge/许可证-MIT-green.svg)
 ![平台](https://img.shields.io/badge/平台-Windows-blue.svg)
 
