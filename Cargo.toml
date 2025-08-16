@@ -1,10 +1,32 @@
 [package]
 name = "picmyweb"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
+authors = ["MrBanana"]
+description = "简单网站批量截图工具"
+license = "MIT"
+keywords = ["screenshot", "web", "automation", "gui"]
+categories = ["gui", "web-programming"]
+
+# 添加这一行，设置为Windows GUI子系统
+[package.metadata.cargo-winres]
+ProductName = "PicMyWeb"
+FileDescription = "网站截图工具"
+LegalCopyright = "Copyright © 2024"
+# 关键：设置子系统为Windows
+Subsystem = "Windows"
 
 [dependencies]
+rfd = "0.11"
 headless_chrome = { version = "1.0", features = ["fetch"] }
 tokio = { version = "1.0", features = ["full"] }
 anyhow = "1.0"
 chrono = "0.4"
+egui = "0.22"
+eframe = { version = "0.22", features = ["default"] }
+winapi = { version = "0.3", features = ["winuser"] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

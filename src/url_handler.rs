@@ -1,7 +1,6 @@
 use anyhow::{Context, Result};
 use std::fs;
 use std::net::{Ipv4Addr, Ipv6Addr};
-use std::path::Path;
 use std::str::FromStr;
 
 /// 从文件中读取网站列表
@@ -84,13 +83,6 @@ fn is_ip_with_port(input: &str) -> bool {
 }
 
 /// 获取要截图的网站列表
-pub fn get_websites() -> Result<Vec<String>> {
-    // 固定从 websites.txt 文件读取
-    let file_path = "websites.txt";
-    if Path::new(file_path).exists() {
-        return read_websites_from_file(file_path);
-    } else {
-        eprintln!("文件 {} 不存在", file_path);
-        return Err(anyhow::anyhow!("文件 {} 不存在", file_path));
-    }
+pub fn get_websites_from_file(file_path: &str) -> Result<Vec<String>> {
+    read_websites_from_file(file_path)
 }
