@@ -224,7 +224,7 @@ pub fn run_gui() -> eframe::Result<()> {
         .insert(0, "Chinese Font".to_owned());
 
     let options = eframe::NativeOptions {
-        initial_window_size: Some(egui::vec2(800.0, 650.0)),
+        initial_window_size: Some(egui::vec2(700.0, 650.0)),
         min_window_size: Some(egui::vec2(600.0, 500.0)),
         ..Default::default()
     };

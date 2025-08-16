@@ -42,6 +42,62 @@ pub async fn capture_screenshot(url: &str) -> Result<()> {
     // 等待页面完全加载
     tokio::time::sleep(tokio::time::Duration::from_secs(3)).await;
 
+    // 添加地址栏显示
+    let address_bar_html = format!(
+        r#"
+        <div id="custom-address-bar" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 44px;
+            background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
+            border-bottom: 1px solid #b2b2b2;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            box-sizing: border-box;
+            z-index: 999999;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            font-size: 14px;
+        ">
+            <div style="
+                background: white;
+                border: 1px solid #b2b2b2;
+                border-radius: 18px;
+                padding: 8px 12px;
+                width: 100%;
+                color: #333;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            ">
+                {}
+            </div>
+        </div>
+        
+        <script>
+            // 调整页面内容以避免被地址栏遮挡
+            document.body.style.paddingTop = '44px';
+            document.documentElement.style.paddingTop = '44px';
+        </script>
+        "#,
+        url
+    );
+
+    // 注入地址栏到页面
+    tab.evaluate(
+        &format!(
+            "document.documentElement.insertAdjacentHTML('afterbegin', `{}`);",
+            address_bar_html.replace('`', "\\`")
+        ),
+        true,
+    )?;
+
+    // 等待一下确保地址栏渲染完成
+    tokio::time::sleep(tokio::time::Duration::from_millis(500)).await;
+
     // 生成文件名
     let timestamp = chrono::Local::now().format("%Y%m%d_%H%M%S");
     let domain = url
